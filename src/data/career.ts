@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export type ScreenKind = "role" | "skills" | "about";
 
 export interface CareerScreen {
@@ -14,9 +16,9 @@ export const careerScreens: CareerScreen[] = [
   {
     id: "about",
     kind: "about",
-    eyebrow: "The Oracle Chamber",
-    title: "Robert Coffman",
-    subtitle: "Software Engineer / Systems Architect",
+    eyebrow: siteConfig.brandShort,
+    title: siteConfig.name,
+    subtitle: siteConfig.role,
     bullets: [
       "Full-stack & distributed systems engineering",
       "Defense tech, cloud migration, enterprise platforms",

@@ -31,7 +31,7 @@ export function Scene() {
       <CameraRig />
 
       <EffectComposer multisampling={0}>
-        <Bloom intensity={0.3} luminanceThreshold={0.62} luminanceSmoothing={0.18} mipmapBlur radius={0.18} />
+        <Bloom intensity={0.28} luminanceThreshold={0.65} luminanceSmoothing={0.1} mipmapBlur={false} radius={0.08} />
         <Vignette eskil={false} offset={0.15} darkness={0.85} />
       </EffectComposer>
     </Canvas>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { siteConfig } from "@/config/site";
 
 export function Contact() {
   return (
@@ -39,10 +40,10 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          href="mailto:rob@cacherefresh.com"
+          href={`mailto:${siteConfig.email}`}
           className="mt-8 rounded-full border border-amber-300/40 bg-amber-300/10 px-8 py-3 text-sm font-medium uppercase tracking-[0.2em] text-amber-200 transition-colors hover:bg-amber-300/20"
         >
-          rob@cacherefresh.com
+          {siteConfig.email}
         </motion.a>
 
         <motion.p
@@ -52,7 +53,7 @@ export function Contact() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-20 text-xs text-white/30"
         >
-          {`© ${new Date().getFullYear()} Robert Coffman — The Oracle Chamber`}
+          {`© ${new Date().getFullYear()} ${siteConfig.name} — ${siteConfig.brandShort}`}
         </motion.p>
       </div>
     </section>
