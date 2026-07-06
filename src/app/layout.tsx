@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { siteConfig } from "@/config/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,9 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Robert Coffman | The Oracle Chamber",
-  description:
-    "Robert Coffman — Software Engineer & Systems Architect. Drone defense, cloud migration, and enterprise platform engineering.",
+  title: siteConfig.metaTitle,
+  description: siteConfig.metaDescription,
 };
 
 export default function RootLayout({

@@ -21,7 +21,7 @@ const energyVertex = /* glsl */ `
     vAlpha = sin(cycle * 3.14159265);
 
     vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-    gl_PointSize = 2.8 * (300.0 / -mvPosition.z);
+    gl_PointSize = 0.7 * (300.0 / -mvPosition.z);
     gl_Position = projectionMatrix * mvPosition;
   }
 `;
@@ -31,9 +31,11 @@ const energyFragment = /* glsl */ `
   void main() {
     float d = length(gl_PointCoord - vec2(0.5));
     if (d > 0.5) discard;
-    float glow = smoothstep(0.5, 0.0, d);
+    float core = smoothstep(0.24, 0.0, d);
+    float halo = smoothstep(0.5, 0.24, d) * 0.3;
+    float glow = core + halo;
     vec3 color = vec3(0.96, 0.77, 0.32);
-    gl_FragColor = vec4(color * glow, glow * vAlpha * 0.55);
+    gl_FragColor = vec4(color * glow, glow * vAlpha * 0.7);
   }
 `;
 
@@ -114,7 +116,7 @@ const streamVertex = /* glsl */ `
     vAlpha = smoothstep(0.0, 0.15, cycle) * smoothstep(1.0, 0.85, cycle);
 
     vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-    gl_PointSize = (1.8 + 1.5 * (1.0 - cycle)) * (300.0 / -mvPosition.z);
+    gl_PointSize = (0.45 + 0.38 * (1.0 - cycle)) * (300.0 / -mvPosition.z);
     gl_Position = projectionMatrix * mvPosition;
   }
 `;
@@ -125,7 +127,9 @@ const streamFragment = /* glsl */ `
   void main() {
     float d = length(gl_PointCoord - vec2(0.5));
     if (d > 0.5) discard;
-    float glow = smoothstep(0.5, 0.0, d);
+    float core = smoothstep(0.24, 0.0, d);
+    float halo = smoothstep(0.5, 0.24, d) * 0.3;
+    float glow = core + halo;
     gl_FragColor = vec4(vColor * glow, glow * vAlpha);
   }
 `;
@@ -204,7 +208,7 @@ function DataStreams({ perScreen = 5 }: { perScreen?: number }) {
 export function ParticleField() {
   return (
     <group>
-      <Stars radius={60} depth={40} count={3000} factor={2.2} saturation={0} fade speed={0.4} />
+      <Stars radius={60} depth={40} count={3000} factor={0.9} saturation={0} fade speed={0.4} />
       <AscendingEmbers />
       <DataStreams />
     </group>

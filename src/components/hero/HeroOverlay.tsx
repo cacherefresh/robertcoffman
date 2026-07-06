@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { siteConfig } from "@/config/site";
 
 export function HeroOverlay() {
   return (
@@ -11,20 +12,13 @@ export function HeroOverlay() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="flex items-center justify-between text-sm uppercase tracking-[0.2em] text-white/70"
       >
-        <span className="font-semibold text-white">Robert Coffman</span>
+        <span className="font-semibold text-white">{siteConfig.name}</span>
         <div className="pointer-events-auto hidden items-center gap-8 sm:flex">
-          <a href="#about" className="transition-colors hover:text-white">
-            About
-          </a>
-          <a href="#experience" className="transition-colors hover:text-white">
-            Experience
-          </a>
-          <a href="#skills" className="transition-colors hover:text-white">
-            Skills
-          </a>
-          <a href="#contact" className="transition-colors hover:text-white">
-            Contact
-          </a>
+          {siteConfig.nav.map((item) => (
+            <a key={item.href} href={item.href} className="transition-colors hover:text-white">
+              {item.label}
+            </a>
+          ))}
         </div>
       </motion.nav>
 
@@ -35,7 +29,7 @@ export function HeroOverlay() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="mb-4 text-xs uppercase tracking-[0.4em] text-amber-300/80"
         >
-          Software Engineer &middot; Systems Architect
+          {siteConfig.role}
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
@@ -43,7 +37,7 @@ export function HeroOverlay() {
           transition={{ duration: 1, delay: 0.35, ease: "easeOut" }}
           className="max-w-3xl bg-gradient-to-b from-white via-white to-amber-200/70 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-6xl"
         >
-          The Oracle Chamber
+          {siteConfig.heroTitle}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -51,8 +45,7 @@ export function HeroOverlay() {
           transition={{ duration: 0.9, delay: 0.55, ease: "easeOut" }}
           className="mt-5 max-w-xl text-balance text-sm text-white/60 sm:text-base"
         >
-          A living archive of drone defense systems, cloud migrations, and enterprise
-          platforms &mdash; orbiting in real time.
+          {siteConfig.heroTagline}
         </motion.p>
       </div>
 

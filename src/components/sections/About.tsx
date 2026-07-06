@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { siteConfig } from "@/config/site";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -39,12 +40,7 @@ export function About() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-6 max-w-2xl text-balance text-base leading-relaxed text-white/60 sm:text-lg"
         >
-          I&apos;m Robert Coffman, a software engineer and systems architect who has
-          spent a career moving between mission-critical defense systems and
-          large-scale enterprise platforms. From fusing radar and RF data for
-          counter-drone systems to migrating global insurance infrastructure to
-          the cloud, I build software that has to work under pressure &mdash;
-          real-time, distributed, and resilient by design.
+          {`I'm ${siteConfig.name}, a software engineer and systems architect who has spent a career moving between mission-critical defense systems and large-scale enterprise platforms. From fusing radar and RF data for counter-drone systems to migrating global insurance infrastructure to the cloud, I build software that has to work under pressure — real-time, distributed, and resilient by design.`}
         </motion.p>
         <motion.div
           variants={fadeUp}
