@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   pull_request:
     types: [closed]
-    branches: [sanctuary]
+    branches: [release]
   workflow_dispatch:
 
 permissions:
@@ -20,13 +20,13 @@ jobs:
     if: >
       github.event_name == 'workflow_dispatch' ||
       (github.event.pull_request.merged == true &&
-       startsWith(github.event.pull_request.head.ref, 'feature/'))
+       github.event.pull_request.head.ref == 'sanctuary')
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout sanctuary
+      - name: Checkout release
         uses: actions/checkout@v4
         with:
-          ref: sanctuary
+          ref: release
 
       - name: Setup Node
         uses: actions/setup-node@v4
